@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucas Yan - Profile</title>
+    <style>
+        :root {
+            --bg-color: #050505;
+            /* 深空黑 */
+            --card-bg: rgba(20, 20, 25, 0.75);
+            /* 深色半透明卡片 */
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-cyan: #00f3ff;
+            /* 沿用首页的青色作为强调 */
+            --matrix-color: #333333;
+            /* 背景数字的颜色：深灰，低调不抢眼 */
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* 背景 Canvas */
+        #binary-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            flex: 1;
+        }
+
+        /* 头部 */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .name-block h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .name-block h2 {
+            font-size: 1.8rem;
+            margin: 10px 0 20px 0;
+            font-weight: 300;
+            color: var(--text-secondary);
+        }
+
+        .info-tags span {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            margin: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+        }
+
+        /* 卡片样式 */
+        section {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            /* 毛玻璃 */
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        h3.section-title {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-cyan);
+            display: inline-block;
+            color: #fff;
+        }
+
+        /* 双语文字 */
+        .bilingual-block {
+            margin-bottom: 25px;
+        }
+
+        .en {
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .cn {
+            color: #b0b0b0;
+            font-size: 1rem;
+            display: block;
+        }
+
+        /* 底部按钮 */
+        .footer-nav {
+            text-align: center;
+            margin-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 35px;
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+            background: transparent;
+        }
+
+        .back-btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .name-block h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="binary-bg"></canvas>
+
+    <div class="container">
+        <header>
+            <div class="name-block">
+                <h1>Lucas Yan</h1>
+                <h2>闫智尧</h2>
+            </div>
+            <div class="info-tags">
+                <span>Rutgers Business School '29</span>
+                <span>Finance / SCM & CS Intersection</span>
+            </div>
+            <p style="color: var(--accent-cyan); margin-top: 20px; font-family: monospace; font-size: 1.1rem;">
+                LucasYanzy@gmail.com</p>
+        </header>
+
+        <section>
+            <h3 class="section-title">About & Highlights / 关于我</h3>
+            <div class="bilingual-block">
+                <span class="en">As a Freshman specializing in the intersection of Finance/Supply Chain Management and
+                    Computer Science, I possess a high degree of enthusiasm for professional practice and data-driven
+                    decision making within the industry.</span>
+                <span class="cn">作为金融/供应链管理与计算机科学交叉方向的大一新生，我对行业内的专业实践和数据驱动决策抱有极高热情。</span>
+            </div>
+
+            <div style="height: 1px; background: rgba(255,255,255,0.1); margin: 25px 0;"></div>
+
+            <div class="bilingual-block" style="margin-bottom: 0;">
+                <span class="en"><strong>Technical Stack:</strong> Fundamental proficiency in Python & Java. Skilled in
+                    Microsoft Office Suite with practical Excel data processing capabilities.</span>
+                <span class="cn"><strong>技术栈：</strong> 具备基础 Python/Java 编程能力。熟练掌握微软办公套件，具备实用的 Excel 数据处理能力。</span>
+            </div>
+        </section>
+
+        <footer class="footer-nav">
+            <a href="index.html" class="back-btn">← Back to Universe</a>
+            <p style="color: #666; font-size: 0.8rem; margin-top: 30px;">© 2026 Lucas Yan. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const canvas = document.getElementById('binary-bg');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // 字符集：只有 0 和 1
+        const binary = "01";
+        const fontSize = 16;
+        const columns = Math.floor(width / fontSize);
+
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * -100;
+        }
+
+        function draw() {
+            // 关键：背景使用带透明度的黑色，形成拖尾效果
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.05)';
+            ctx.fillRect(0, 0, width, height);
+
+            // 字体颜色：暗灰色 (如果您觉得太暗，可以改亮一点，比如 #555)
+            ctx.fillStyle = '#2a2a2a';
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < columns; i++) {
+                // 随机生成 0 或 1
+                const text = binary.charAt(Math.floor(Math.random() * binary.length));
+
+                // 绘制
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                // 随机重置
+                if (drops[i] * fontSize > height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 35);
+    </script>
+</body>
+
+</html>
