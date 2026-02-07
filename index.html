@@ -110,92 +110,77 @@
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
-            opacity: 0.7;
+            opacity: 0.6;
             transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            /* Siri Mesh Gradient Palette */
-            background: linear-gradient(-45deg,
-                    #ff9d00, #ff2d55, #a259ff, #00f3ff, #ff2d55, #ff9d00);
-            background-size: 400% 400%;
+            /* Blue/Purple Dominant Siri Palette */
+            background: linear-gradient(90deg,
+                    #00f3ff 0%, #7000ff 25%, #ff2d55 45%, #ff9d00 50%, #ff2d55 55%, #7000ff 75%, #00f3ff 100%);
+            background-size: 300% auto;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             white-space: nowrap;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             position: relative;
             z-index: 2;
         }
 
         .bottom-nav:hover .click-text {
             opacity: 1;
-            transform: scale(1.05);
-            animation: siri-flow 4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-            filter: drop-shadow(0 0 8px rgba(255, 45, 85, 0.3));
+            transform: scale(1.02);
+            animation: siri-flow 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.2));
         }
 
         .circle-btn {
             width: 64px;
             height: 64px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             position: relative;
             z-index: 2;
-            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.05);
+            overflow: visible;
         }
 
-        /* Apple Intelligence Aura Effect */
-        .bottom-nav::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle,
-                    rgba(255, 45, 85, 0.4) 0%,
-                    rgba(162, 89, 255, 0.3) 30%,
-                    rgba(0, 243, 255, 0.2) 60%,
-                    transparent 80%);
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 1;
-            filter: blur(40px);
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .bottom-nav:hover::before {
-            width: 300px;
-            height: 300px;
-            opacity: 0.8;
-            animation: aura-breathe 4s ease-in-out infinite alternate;
-        }
-
-        .bottom-nav:hover .circle-btn {
-            border-color: rgba(0, 243, 255, 0.6);
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.2), inset 0 0 20px rgba(0, 243, 255, 0.1);
-        }
-
-        /* 引导点击的脉冲环 */
+        /* Siri Edge Glow Border */
         .circle-btn::before {
             content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 1px solid #00f3ff;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: conic-gradient(#00f3ff, #7000ff, #ff2d55, #ff9d00, #00f3ff);
             border-radius: 50%;
-            animation: pulse-ring 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-            pointer-events: none;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            filter: blur(8px);
         }
 
+        .bottom-nav:hover .circle-btn::before {
+            opacity: 0.7;
+            animation: rotate-glow 2s linear infinite;
+        }
+
+        .bottom-nav:hover .circle-btn {
+            border-color: transparent;
+            transform: scale(1.05);
+        }
+
+        /* 移除之前的大光晕 */
+        .bottom-nav::before {
+            display: none;
+        }
+
+        /* 引导点击的脉冲环 */
         .circle-btn::after {
             content: '';
             width: 10px;
@@ -241,27 +226,21 @@
 
         @keyframes siri-flow {
             0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
+                background-position: 0% center;
             }
 
             100% {
-                background-position: 0% 50%;
+                background-position: 300% center;
             }
         }
 
-        @keyframes aura-breathe {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.6;
+        @keyframes rotate-glow {
+            from {
+                transform: rotate(0deg);
             }
 
-            100% {
-                transform: translate(-50%, -50%) scale(1.2);
-                opacity: 0.9;
+            to {
+                transform: rotate(360deg);
             }
         }
 
