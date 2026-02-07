@@ -112,15 +112,16 @@
             text-transform: uppercase;
             opacity: 0.6;
             transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            /* Blue/Purple Dominant Siri Palette */
-            background: linear-gradient(90deg,
-                    #00f3ff 0%, #7000ff 25%, #ff2d55 45%, #ff9d00 50%, #ff2d55 55%, #7000ff 75%, #00f3ff 100%);
+            /* Blue/Purple Dominant Base */
+            color: #bfaaff;
+            background: linear-gradient(120deg,
+                    #00f3ff 0%, #a259ff 40%, #ff2d55 50%, #ff9d00 52%, #a259ff 65%, #00f3ff 100%);
             background-size: 300% auto;
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             white-space: nowrap;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             position: relative;
             z-index: 2;
         }
@@ -128,73 +129,73 @@
         .bottom-nav:hover .click-text {
             opacity: 1;
             transform: scale(1.02);
-            animation: siri-flow 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.2));
+            animation: siri-sweep 2.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px rgba(162, 89, 255, 0.3));
         }
 
         .circle-btn {
-            width: 64px;
-            height: 64px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             position: relative;
             z-index: 2;
             overflow: visible;
         }
 
-        /* Siri Edge Glow Border */
+        /* Authentic Apple Edge Glow */
         .circle-btn::before {
             content: '';
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: conic-gradient(#00f3ff, #7000ff, #ff2d55, #ff9d00, #00f3ff);
+            inset: -1.5px;
+            padding: 1.5px;
+            border-radius: 50%;
+            background: conic-gradient(#00f3ff, #7000ff, #ff2d55, #ff9d00, #a259ff, #00f3ff);
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        /* Outer Glow Layer */
+        .circle-btn::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: conic-gradient(#00f3ff, #7000ff, #ff2d55, #ff9d00, #a259ff, #00f3ff);
             border-radius: 50%;
             z-index: -1;
             opacity: 0;
-            transition: opacity 0.5s ease;
-            filter: blur(8px);
+            filter: blur(6px);
+            transition: opacity 0.6s ease;
         }
 
-        .bottom-nav:hover .circle-btn::before {
-            opacity: 0.7;
-            animation: rotate-glow 2s linear infinite;
+        .bottom-nav:hover .circle-btn::before,
+        .bottom-nav:hover .circle-btn::after {
+            opacity: 1;
+            animation: siri-rotate 1.5s linear infinite;
         }
 
         .bottom-nav:hover .circle-btn {
-            border-color: transparent;
-            transform: scale(1.05);
+            transform: scale(1.08);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
         }
 
-        /* 移除之前的大光晕 */
+        /* Remove old aura */
         .bottom-nav::before {
-            display: none;
-        }
-
-        /* 引导点击的脉冲环 */
-        .circle-btn::after {
-            content: '';
-            width: 10px;
-            height: 10px;
-            background-color: #00f3ff;
-            border-radius: 50%;
-            box-shadow: 0 0 15px #00f3ff;
-            animation: breathe 2s infinite ease-in-out;
-        }
-
-        .bottom-nav:hover .circle-btn {
-            border-color: #00f3ff;
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.5);
-            transform: scale(1.05);
+            display: none !important;
         }
 
         @keyframes breathe {
@@ -224,17 +225,17 @@
             }
         }
 
-        @keyframes siri-flow {
+        @keyframes siri-sweep {
             0% {
-                background-position: 0% center;
+                background-position: -150% center;
             }
 
             100% {
-                background-position: 300% center;
+                background-position: 150% center;
             }
         }
 
-        @keyframes rotate-glow {
+        @keyframes siri-rotate {
             from {
                 transform: rotate(0deg);
             }
